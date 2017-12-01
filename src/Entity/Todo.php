@@ -16,8 +16,8 @@ class Todo
     public const COMPLETE = 2;
 
     private static $names = [
-        self::INCOMPLETE => '未完了',
-        self::COMPLETE => '完了',
+        self::INCOMPLETE => 'incomplete',
+        self::COMPLETE => 'completed',
     ];
 
     /**
