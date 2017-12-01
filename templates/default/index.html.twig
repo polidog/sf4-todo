@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block contents %}
+    <h1>TodoList</h1>
+    <div class="row">
+        <div class="col-sm-8">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for todo in todos %}
+                    <tr>
+                        <td>{{ todo.id }}</td>
+                        <td>{{ todo.title }}</td>
+                        <td>{{ todo.statusName }}</td>
+                        <td>
+                            {% if todo.isActive() %}
+                                <a href="{{ path("app_todo_done",{"id": todo.id}) }}" class="btn btn-danger">Done</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header">
+                    Create New Todo
+                </div>
+                <div class="card-block">
+                    <form method="post" action="{{ path("app_todo_new") }}">
+                    {{ form_widget(todoForm) }}
+                        <div class=""><button class="btn btn-primary" type="submit">Send</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
