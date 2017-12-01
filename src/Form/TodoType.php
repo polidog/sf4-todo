@@ -20,7 +20,7 @@ class TodoType extends AbstractType
 
         $transform = function ($data) { return $data; };
         $reverseTransform = function ($data) {
-            return Todo::create($data['title']);
+            return new Todo($data['title'], new \DateTime());
         };
         $builder->addModelTransformer(new CallbackTransformer($transform, $reverseTransform));
     }

@@ -53,6 +53,17 @@ class Todo
     private $updatedAt;
 
     /**
+     * @param int $id
+     */
+    public function __construct(string $title, \DateTime $now)
+    {
+        $this->title = $title;
+        $this->status = self::INCOMPLETE;
+        $this->createdAt = $now;
+        $this->updatedAt = $now;
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -76,10 +87,7 @@ class Todo
         return self::$names[$this->status];
     }
 
-    /**
-     * @param string $title
-     * @param int    $status
-     */
+
     public function update(string $title): void
     {
         $this->title = $title;
@@ -97,19 +105,4 @@ class Todo
         return self::INCOMPLETE === $this->status;
     }
 
-    /**
-     * @param string $title
-     *
-     * @return Todo
-     */
-    public static function create(string $title): self
-    {
-        $self = new self();
-        $self->status = self::INCOMPLETE;
-        $self->title = $title;
-        $self->createdAt = new \DateTime();
-        $self->updatedAt = new \DateTime();
-
-        return $self;
-    }
 }
